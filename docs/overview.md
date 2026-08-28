@@ -2,7 +2,7 @@
 
 **ESP32 fuel-tank vapor monitor with speed-adaptive thresholds**
 
-VIT Embedded Systems hardware project. This document is the course-facing summary. **Architecture** (`docs/architecture.md`) and **mathematics** (`docs/mathematics.md`) are the academic core; hardware instantiates them. Phase order: `docs/implementation-plan.md`. Live execution status (update before commit): `docs/phase-execution-status.md`. What you run: `docs/execution-plan.md`. Fault ledger: `docs/fault-ledger.md`.
+VIT Embedded Systems hardware project. This document is the course-facing summary. **Architecture** (`docs/architecture.md`) and **mathematics** (`docs/mathematics.md`) are the academic core; hardware instantiates them. Glossary: `docs/abbreviations.md`. Phase order: `docs/implementation-plan.md`. Live execution status (update before commit): `docs/phase-execution-status.md`. What you run: `docs/execution-plan.md`. Fault ledger: `docs/fault-ledger.md`.
 
 ## Problem
 

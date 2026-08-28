@@ -4,7 +4,7 @@ Live board for this ESP32 `T(v)` project. **Update this file before every git co
 
 | Field | Value |
 |-------|--------|
-| Last updated | 2026-08-28 (commit: scripts + BUY links) |
+| Last updated | 2026-08-28 (docs: BUY use, hardware use, glossary) |
 | Current phase | **P1 toolchain** (blocked on PIO + ESP32) after **P0 done** |
 | Next action | You: BUY ESP32 + two pots. Run `scripts\p1-install-pio.cmd`, new cmd, then `scripts\p1-build.cmd`. |
 | Blockers | `pio` not on PATH. No MCU verified. F-001, F-002 open. Cursor in-tab Markdown preview still unreliable (F-011). |
@@ -24,14 +24,14 @@ Definitions: `not_started` · `in_progress` · `blocked` · `done` · `skipped`
 | P5 | Dry two-pot labs | `not_started` | no | Depends on P4 + P0 |
 | P6 | MQ-2 5 V + air sweep | `not_started` | no | `DRY_POT` still `1` (F-005) |
 | P7 | IPA / fan / tune `K` | `not_started` | — | Optional; may `skipped` |
-| P8 | Report + viva | `in_progress` | no | Overview, architecture, math, plan exist (ASCII `T_mod` so editor is readable); plots/demo incomplete |
+| P8 | Report + viva | `in_progress` | no | Overview, architecture, math, plan, `docs/abbreviations.md`; plots/demo incomplete |
 
 ## Current work
 
 - P0 complete including `sim/out/math_summary.txt`.
 - P1 **blocked** here: `pio` missing. Scripts updated to fall back to `python -m platformio`.
 - Docs use firmware names (`T_mod`, `T_MOD_0`) instead of LaTeX so they read in the source editor. Browser preview: `scripts\preview-docs.cmd`.
-- Scripts share `scripts\_lib.cmd`; firmware goes through `scripts\pio.cmd`; P0/preview take extra CLI args.
+- Glossary: `docs/abbreviations.md`. Per-part bench use: `hardware.md` and `docs/buy.md`. Workspace Markdown preview: `.vscode/settings.json`.
 
 ## Next action
 
@@ -50,5 +50,6 @@ Definitions: `not_started` · `in_progress` · `blocked` · `done` · `skipped`
 | 2026-08-28 | Scripts made reusable: `_lib.cmd`, `pio.cmd`, `%*` forwarded; sim/preview `--help`. |
 | 2026-08-28 | BUY catalog: `docs/buy.md` + photos under `docs/images/buy/`; plan table IDs B1–B12. |
 | 2026-08-28 | Shared `scripts\_lib.cmd` / `pio.cmd`; sim and preview CLI flags. Shop URLs for B1–B12 in `docs/buy.md`. |
+| 2026-08-28 | DMM + part **use** in `buy.md`/`hardware.md`; `docs/abbreviations.md`; `.vscode` Markdown preview association. |
 
 When logging a new row, also set **Last updated**. If a phase moves to `done`, tick the matching boxes in `docs/implementation-plan.md`.

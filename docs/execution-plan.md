@@ -12,8 +12,9 @@ The agent must add a **script you can run yourself** (`scripts\<name>.cmd` or `p
 | [phase-execution-status.md](phase-execution-status.md) | Live board (agent updates before commit) |
 | [mathematics.md](mathematics.md) | `T(v)` equations |
 | [architecture.md](architecture.md) | L0–L5 |
+| [abbreviations.md](abbreviations.md) | ADC, GPIO, `T_mod`, phases, CSV |
 
-Working directory unless a script `cd`s: **repo root**. Prefer `scripts\*.cmd` (PowerShell often blocks `.ps1`).
+This workspace opens `.md` in Cursor’s built-in Markdown Preview (`vscode.markdown.preview.editor`). Reopen `hardware.md` after reload. **Ctrl+Shift+V** = preview tab; **Ctrl+K V** = preview beside source. Browser fallback: `scripts\preview-docs.cmd`.
 
 Shared helpers (use these; do not copy-paste lookup logic):
 

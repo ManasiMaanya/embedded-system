@@ -26,24 +26,52 @@ Prices are typical India hobby-shop ranges (2026). **Shop links go out of stock*
 
 ## Summary
 
-| | ID | Item | Qty | Phase | Typical ₹ | Tick |
-|---|----|------|-----|-------|-----------|------|
-| <img src="images/buy/buy-esp32.png" alt="ESP32 DevKit" width="140"/> | B1 | ESP32 DevKit | 1 | P1 | 250–450 | [ ] |
-| <img src="images/buy/buy-usb.png" alt="USB data cable" width="140"/> | B2 | USB **data** cable | 1 | P1 | 50–150 | [ ] |
-| <img src="images/buy/buy-pots.png" alt="10k potentiometers" width="140"/> | B3 | 10 kΩ **linear** pots | 2 | P3 | 20–50 each | [ ] |
-| <img src="images/buy/buy-oled.png" alt="SSD1306 OLED" width="140"/> | B4 | SSD1306 128×64 I²C OLED | 1 | P2 | 150–280 | [ ] |
-| <img src="images/buy/buy-rgb.png" alt="RGB LED and 220 ohm resistors" width="140"/> | B5 | RGB LED + 220 Ω resistors | 1 + 3 | P4 | 20–60 | [ ] |
-| <img src="images/buy/buy-buzzer.png" alt="Active buzzer" width="140"/> | B6 | Active buzzer | 1 | P4 | 20–50 | [ ] |
-| <img src="images/buy/buy-button.png" alt="Tactile button" width="140"/> | B7 | Tactile button 6×6 mm | 1 | P4 | 5–20 | [ ] |
-| <img src="images/buy/buy-breadboard.png" alt="Breadboard and Dupont wires" width="140"/> | B8 | Breadboard + Dupont wires | 1 kit | P1 | 120–250 | [ ] |
-| <img src="images/buy/buy-mq2.png" alt="MQ-2 module" width="140"/> | B9 | MQ-2 **module** | 1 | P6 | 120–220 | [ ] |
-| <img src="images/buy/buy-psu.png" alt="5V adapter" width="140"/> | B10 | 5 V adapter ≥1 A | 1 | P6 | 150–350 | [ ] |
-| <img src="images/buy/buy-dmm.png" alt="Digital multimeter" width="140"/> | B11 | DMM (borrow OK) | 1 | P6 | 0–400 | [ ] |
-| <img src="images/buy/buy-fan.png" alt="USB fan" width="140"/> | B12 | USB fan | 1 optional | P7 | 100–300 | [ ] |
+| | ID | Item | Qty | Phase | Use in this project | Typical ₹ | Tick |
+|---|----|------|-----|-------|---------------------|-----------|------|
+| <img src="images/buy/buy-esp32.png" alt="ESP32 DevKit" width="140"/> | B1 | ESP32 DevKit | 1 | P1 | MCU: ADC, I²C, GPIO, USB serial | 250–450 | [ ] |
+| <img src="images/buy/buy-usb.png" alt="USB data cable" width="140"/> | B2 | USB **data** cable | 1 | P1 | Upload firmware + CSV monitor | 50–150 | [ ] |
+| <img src="images/buy/buy-pots.png" alt="10k potentiometers" width="140"/> | B3 | 10 kΩ **linear** pots | 2 | P3 | Speed `v` + dry vapor `d` | 20–50 each | [ ] |
+| <img src="images/buy/buy-oled.png" alt="SSD1306 OLED" width="140"/> | B4 | SSD1306 128×64 I²C OLED | 1 | P2 | Show `d`, `v`, `T_mod`, `T_high`, state | 150–280 | [ ] |
+| <img src="images/buy/buy-rgb.png" alt="RGB LED and 220 ohm resistors" width="140"/> | B5 | RGB LED + 220 Ω resistors | 1 + 3 | P4 | Green / yellow / red alarm | 20–60 | [ ] |
+| <img src="images/buy/buy-buzzer.png" alt="Active buzzer" width="140"/> | B6 | Active buzzer | 1 | P4 | Off / beep / continuous | 20–50 | [ ] |
+| <img src="images/buy/buy-button.png" alt="Tactile button" width="140"/> | B7 | Tactile button 6×6 mm | 1 | P4 | Recapture baseline | 5–20 | [ ] |
+| <img src="images/buy/buy-breadboard.png" alt="Breadboard and Dupont wires" width="140"/> | B8 | Breadboard + Dupont wires | 1 kit | P1 | Wire the bench without solder | 120–250 | [ ] |
+| <img src="images/buy/buy-mq2.png" alt="MQ-2 module" width="140"/> | B9 | MQ-2 **module** | 1 | P6 | Tank vapor index (AO) | 120–220 | [ ] |
+| <img src="images/buy/buy-psu.png" alt="5V adapter" width="140"/> | B10 | 5 V adapter ≥1 A | 1 | P6 | MQ-2 heater only | 150–350 | [ ] |
+| <img src="images/buy/buy-dmm.png" alt="Digital multimeter" width="140"/> | B11 | DMM (borrow OK) | 1 | P6 | DC V, Ω, diode, continuity | 0–400 | [ ] |
+| <img src="images/buy/buy-fan.png" alt="USB fan" width="140"/> | B12 | USB fan | 1 optional | P7 | Optional airflow demo | 100–300 | [ ] |
 
 **Need by P1:** B1, B2, B8. **Need by P2:** B4. **Need by P3:** B3. **Need by P4:** B5–B7. **Need by P6:** B9, B10, B11. Buy B9 early; it can ship slowly.
 
 Optional extra (no photo): two **10 kΩ ¼ W** resistors if MQ-2 AO is above 3.3 V (divider). ₹5–15.
+
+---
+
+## How we use the multimeter (B11)
+
+A cheap DT830-class meter is enough. You do **not** need True RMS, capacitance, or 10 A current for this capstone.
+
+Black probe in **COM**. Red probe in **VΩmA** (the left/small jack), never the 10 A jack unless you are measuring amps (we are not).
+
+| Dial | Name | Use in this project | Typical reading |
+|------|------|---------------------|-----------------|
+| **V⎓** (DC volts), range **20 V** | DC voltage | **Main tool.** Rails, adapter, sensor AO, pot wiper. | 3.3 V rail; ~5.0 V heater; AO **must be ≤ 3.3 V** before GPIO 34 |
+| **Ω** (200 / 2k / 20k) | Resistance | Check 220 Ω and 10 kΩ parts; pot end-to-end ~10 kΩ | 220 Ω bands; 10 kΩ pot between the two **ends** (not wiper) |
+| **Diode** (▶\|) | Diode / LED | Identify RGB **common cathode** vs common anode (F-009) | One colour lights with red on that pin, black on common → common is **cathode** |
+| **Continuity** (♪) if the meter has it; else Ω near 0 | Beep / short | Wires, button closed, **common GND** from USB to 5 V brick | Beep = connected |
+
+**Do not use for this lab**
+
+| Dial | Why skip |
+|------|----------|
+| **V~** AC volts | Bench is DC only. Mains AC is a shock hazard; do not probe wall sockets. |
+| **A / mA** current | Not required. Measuring current means breaking the circuit; easy to blow the meter fuse. |
+| **hFE** transistor socket | Unused. |
+| **10 A** jack | Unused. Leave red probe out of that hole. |
+
+**DC V procedure (every voltage check):** range **20 V DC** (or auto). Black on **GND** (ESP32 GND / breadboard blue rail). Red on the point under test. Read volts.
+
+**Must-pass check (P6, before GPIO 34):** heater **5 V** on MQ-2 VCC, common GND, **AO to GND** ≤ **3.3 V**. If higher, fit the Extra 10 kΩ divider, then measure **again** at the ESP32 side of the divider.
 
 ---
 
@@ -65,6 +93,10 @@ Optional extra (no photo): two **10 kΩ ¼ W** resistors if MQ-2 AO is above 3.3
 | Must match | Board enumerates as a COM port; `EN` / `BOOT` buttons present |
 | Reject | ESP8266 NodeMCU, STM32 “Blue Pill”, 5 V Arduino Uno as the only MCU |
 | Used with | USB (B2), breadboard (B8) |
+
+**Use in this project:** L0–L5 controller. Runs `firmware/` (`esp32dev`): ADC on GPIO 34/33, I²C OLED, RGB, buzzer, serial CSV. Power the **MCU from USB only**. Wi-Fi/Bluetooth stay **off**. On-board LED (GPIO 2) blinks in warm-up (P1).
+
+**DMM on this part:** **DC V** 3V3 pin vs GND ≈ 3.3 V with USB plugged in. **Continuity** from ESP32 GND to breadboard GND (must beep). Do not put 5 V on any GPIO.
 
 Firmware target: `esp32dev` in `firmware/platformio.ini`.
 
@@ -90,6 +122,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Must match | Computer sees a **COM / serial** device when the board is plugged in |
 | Reject | Charge-only cables (no data wires) — upload will fail |
 | Used with | B1, P1 upload |
+
+**Use in this project:** Power + **data** so PlatformIO can upload and `scripts\p1-monitor.cmd` can print CSV. Charge-only cables fail P1.
+
+**DMM:** not required. If upload fails, try another cable before blaming the board.
 
 **Buy:** Circuit City ESP32 listing is **micro-USB**, so this cable matches B1.
 
@@ -117,6 +153,17 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Qty | **2** (speed + dry vapor). One pot is not enough for P3/P5 |
 | Reject | 1 kΩ or 100 kΩ only; dual-gang stereo pots unless you know the pinout |
 | Used with | P3–P5; never in parallel with MQ-2 AO on GPIO 34 |
+
+**Use in this project**
+
+| Pot | Role | Pin | What you demonstrate |
+|-----|------|-----|----------------------|
+| Speed | Independent variable `v` (0–120 km/h) | Wiper → GPIO **33** | `T_mod(v)` and `T_high(v)` move on OLED |
+| Dry vapor | Fake `d` without MQ-2 | Wiper → GPIO **34** | P3–P5 tables; **unplug** before MQ-2 |
+
+Ends of each pot: **3V3** and **GND**.
+
+**DMM:** **Ω** 20 k range, probes on the two **ends** (not wiper) ≈ 10 kΩ. **DC V** 20 V: black GND, red **wiper** — voltage sweeps ~0–3.3 V as you turn (same as the ADC sees).
 
 **Buy qty 2.** Title must say **10 kΩ** and **linear** / **B10K**, not A10K.
 
@@ -146,6 +193,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Reject | SPI 7-pin OLED unless you rewire firmware; 128×32 “too short” for four lines |
 | Used with | P2 onward |
 
+**Use in this project:** Operator HMI (L5). Always show `d`, `v`, `T_mod`, `T_high`, and SAFE/MOD/HIGH so the adaptive law is visible. Wiring: VCC→3V3, GND→GND, SDA→GPIO **21**, SCL→GPIO **22**.
+
+**DMM:** **DC V** on OLED **VCC** vs GND ≈ 3.3 V. If the screen is blank, check that before swapping I²C address (0x3C vs 0x3D).
+
 **Buy:** 4 pins `VCC GND SCL SDA`, **128×64**, **SSD1306**. Not 7-pin SPI.
 
 | Shop | Link | Notes |
@@ -172,6 +223,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Reject | Unlabeled 2-pin “RGB” modules with a driver chip unless you map pins |
 | Used with | P4 |
 
+**Use in this project:** Alarm colours (L5). Green = SAFE, yellow (R+G) = MOD, red = HIGH. Each colour pin through a **220 Ω** to GPIO 25/26/27; common cathode to **GND**.
+
+**DMM:** **Ω** on each 220 Ω resistor (~220). **Diode** mode on the RGB: find which pin is common (see [How we use the multimeter](#how-we-use-the-multimeter-b11)). Firmware assumes **common cathode**; if colours are inverted you have common anode (F-009).
+
 **Buy:** LED must be **common cathode**. Pack of 10 is fine (use one). Need **three** 220 Ω (or 180–330 Ω) ¼ W resistors.
 
 | Shop | Link | Notes |
@@ -196,6 +251,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Reject | Passive buzzer (needs tone()) unless you change firmware |
 | Used with | P4 |
 
+**Use in this project:** Acoustic alarm (L5). Off in SAFE, intermittent in MOD (`millis()`), continuous in HIGH. `+` → GPIO **13**, `−` → GND. Active type: DC on/off is enough (no `tone()`).
+
+**DMM:** **Continuity** from buzzer `−` to GND. Optional **DC V** across `+` and GND when HIGH (GPIO high ≈ 3.3 V). Skip current (A) measurement.
+
 **Buy:** listing must say **active**. Pack of 5: use one.
 
 | Shop | Link | Notes |
@@ -218,6 +277,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Qty | 1 required; extras are cheap |
 | Used with | P4, P6 calibrate |
 
+**Use in this project:** Recapture baseline `N_0` (L2) after warm-up or if clean air drifted. One side GPIO **4**, other **GND**. Firmware pull-up: pressed = LOW.
+
+**DMM:** **Continuity** (or Ω) across the switch: open = infinite, **pressed** = short. Confirms you found the correct pair of legs on a 4-pin tact.
+
 **Buy:** 6×6 mm through-hole. Pack of 20: use one.
 
 | Shop | Link | Notes |
@@ -237,6 +300,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Wires | Mix of male–male and male–female (OLED often has male pins) |
 | Must match | Power rails not broken in the middle without jumpers |
 | Used with | All bench phases |
+
+**Use in this project:** Prototype wiring without solder. ESP32 straddles the centre gap; pots, OLED, RGB, button, and (later) MQ-2 sit on the same board. Dupont: M–M for breadboard holes, M–F for OLED / module headers.
+
+**DMM:** **Continuity** along a jumper (both ends). **Continuity** between the two GND rails if you jumpered them. Power rails on cheap boards are often **split** in the middle — continuity-check or add a jumper.
 
 **Buy:** 830-point board **plus** M–M and M–F Dupont. Do not buy the “UNO R3 starter kit” unless you want extra Arduino junk.
 
@@ -268,6 +335,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Reject | MQ-135 / MQ-7 as a silent substitute without changing the report story |
 | Used with | B10, B11, P6 |
 
+**Use in this project:** Tank-zone vapor **index** (L0–L1). Analog **AO** only (firmware ignores **DO**). Heater VCC from **B10 5 V**, not ESP32 3V3. After DMM pass, AO → GPIO **34**. `DRY_POT 0`, 60 s warm-up, then calibrate. No petrol.
+
+**DMM (required before the pin):** heater on. **DC V** MQ-2 **VCC vs GND** ≈ 5 V. **DC V** **AO vs GND** — must be **≤ 3.3 V**. If not, Extra divider, then measure the **divided** node. Common GND with ESP32 (**continuity** GND to GND).
+
 **Buy exactly one.** Module with **AO** and **DO**. Heater still needs **5 V** (B10).
 
 | Shop | Link | Notes |
@@ -291,6 +362,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Must not | Power the MQ-2 heater from the ESP32 3V3 pin |
 | Used with | B9, P6 |
 
+**Use in this project:** MQ-2 **heater** power only (~150 mA). ESP32 still from USB. Tie adapter **GND** to ESP32 **GND**. Do not power the MCU from this brick unless you know the 5 V rail is 5 V-tolerant on VIN only — this lab keeps USB for the DevKit.
+
+**DMM:** **DC V** 20 V: adapter **+** to **−** ≈ **5.0 V** with no sensor, then again with MQ-2 connected (should stay near 5 V). Never measure AC on the wall pin.
+
 **Buy:** **5 V**, **≥ 1 A**, Indian mains plug. You still need a way onto the breadboard (barrel jack + wires, or a USB 5 V brick **only** for the sensor, common GND).
 
 | Shop | Link | Notes |
@@ -313,6 +388,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Borrow | Lab DMM is fine; no need to buy if you have access |
 | Used with | P6 |
 
+**Use in this project:** Safety and bring-up instrument for **every** analog/power check. Full dial guide: [How we use the multimeter](#how-we-use-the-multimeter-b11).
+
+**Features we use:** DC volts (20 V), ohms, diode (RGB), continuity. **Features we do not use:** AC volts, amps, hFE, 10 A jack.
+
 **Buy only if** you cannot borrow a lab meter. DC volts is enough.
 
 | Shop | Link | Notes |
@@ -334,6 +413,10 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 | Skip | Allowed — tick Skip P7 in the implementation plan |
 | Used with | P7 only |
 
+**Use in this project:** Optional **plant** anecdote: airflow past MQ-2 while speed pot still sets `T(v)`. Aim at the sensor, not the ESP32 USB plug. Skip P7 if you want.
+
+**DMM:** none required. Optional **DC V** on a USB charger that powers the fan ≈ 5 V.
+
 **Buy only if** you are doing P7. Any small **5 V USB** fan is enough.
 
 | Shop | Link | Notes |
@@ -346,7 +429,9 @@ Listings go out of stock. If a link 404s, search the same shop for `ESP32 DevKit
 
 ## Extra — 10 kΩ resistors (AO divider)
 
-Only if DMM shows MQ-2 **AO > 3.3 V**. Two ¼ W 10 kΩ in series as a 2:1 divider (or any equal pair).
+Only if DMM shows MQ-2 **AO > 3.3 V**. Two ¼ W 10 kΩ in series as a 2:1 divider (or any equal pair). AO → top of divider, GND at bottom, **midpoint → GPIO 34**.
+
+**DMM:** **Ω** each resistor ≈ 10 kΩ. After wiring: **DC V** at midpoint vs GND must be **≤ 3.3 V** (and still move when vapor/index changes).
 
 | Shop | Link | Notes |
 |------|------|-------|

@@ -120,10 +120,11 @@ When adding firmware: keep L1–L5 separable; put L3 numbers in `math_params.h`.
 
 ## Additional resources
 
-- [hardware.md](hardware.md) — pins, BOM, power
+- [hardware.md](hardware.md) — pins, BOM, power. In this repo, `.md` opens in Cursor’s built-in **Markdown Preview** (`.vscode/settings.json`). Close the tab and reopen `hardware.md`, or **Ctrl+Shift+V**. To edit source: Command Palette → **View: Reopen Editor With…** → **Text Editor**.
 - `docs/buy.md` — BUY photos, specs, typical ₹
 - [firmware.md](firmware.md) — loop and PlatformIO
 - [tests.md](tests.md) — Python sim, then pots, then MQ-2
+- `docs/abbreviations.md` — ADC, GPIO, `T_mod`, P0–P8, B1–B12, CSV columns
 - `docs/architecture.md` — layers L0–L5, dual sim/firmware controller
 - `docs/mathematics.md` — ADC, \(T(v)\), inverses, worked example
 - `docs/implementation-plan.md` — phases, dependencies, checklists
