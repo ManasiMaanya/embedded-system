@@ -1,9 +1,11 @@
 @echo off
-REM Open a Markdown file in your browser (KaTeX + mermaid). Default: architecture.md
-cd /d "%~dp0.."
+REM Browser preview of any Markdown file. Extra args go to preview_md.py (--help).
+call "%~dp0_lib.cmd"
+if errorlevel 1 exit /b 1
+cd /d "%REPO%"
 if "%~1"=="" (
-  python scripts\preview_md.py docs\architecture.md
+  %PY% scripts\preview_md.py docs\architecture.md
 ) else (
-  python scripts\preview_md.py %*
+  %PY% scripts\preview_md.py %*
 )
 exit /b %ERRORLEVEL%

@@ -8,9 +8,11 @@ Same `T(v)` as `firmware/src/math_params.h`. Prints closed-form `v_enter`, `v_le
 
 ```
 scripts\p0.cmd
+scripts\p0.cmd --help
+scripts\p0.cmd --delta 200
 ```
 
-Writes `sim/out/sim_speed_sweep_d200.csv` and `sim/out/sim_delta_sweep_v0.csv`, `sim_delta_sweep_v80.csv`.
+Writes `sim/out/sim_speed_sweep_d200.csv` and `sim/out/sim_delta_sweep_v0.csv`, `sim_delta_sweep_v80.csv` (names follow `--delta` / `--hold-v`).
 
 Check: closed form `v_leave(200)=75` km/h; sweep **MOD → SAFE** near that speed. At `v = 80`, `d_enter_mod=244` vs `180` at rest.
 

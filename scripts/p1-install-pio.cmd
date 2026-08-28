@@ -1,7 +1,10 @@
 @echo off
-REM One-time: install PlatformIO CLI with the Python on PATH.
-python -m pip install --user platformio
+REM One-time PlatformIO CLI install. Extra args go to pip (e.g. --upgrade).
+call "%~dp0_lib.cmd"
+if errorlevel 1 exit /b 1
+%PY% -m pip install --user platformio %*
 echo.
-echo Then close this window, open a new cmd, and run scripts\p1-build.cmd
-echo If pio is still missing, try: python -m platformio run -d firmware
+echo Then open a new cmd so PATH picks up pio, or keep using:
+echo   scripts\p1-build.cmd
+echo ^(that wrapper already falls back to: %PY% -m platformio^)
 exit /b %ERRORLEVEL%

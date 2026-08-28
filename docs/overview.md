@@ -99,7 +99,7 @@ Alarms never use raw ADC against a magic constant; they use **delta vs `T(v)`**.
 | USB fan (optional) | Airflow analogy for “speed”                                |
 
 
-GPIO map, BOM, and power rules: `.cursor/skills/esp32-fuel-vapor/hardware.md`. Firmware: `firmware/`.
+GPIO map, BOM, and power rules: `.cursor/skills/esp32-fuel-vapor/hardware.md`. What to buy (photos + specs): `docs/buy.md`. Firmware: `firmware/`.
 
 **Power:** ESP32 from USB. MQ-2 heater from an external 5 V adapter, not the ESP32 3V3 pin. Measure AO before connecting; divide if it can exceed 3.3 V. Never wire MQ-2 AO and the vapor pot to GPIO 34 at the same time.
 

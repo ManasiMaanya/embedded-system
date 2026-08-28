@@ -6,7 +6,7 @@ Do not start a later phase until that phase’s **Depends on** items are done, u
 
 **Live status (refresh before commit):** `docs/phase-execution-status.md`. **What you type:** `docs/execution-plan.md` (`scripts\*.cmd`). Checklists below are the detailed ticks.
 
-Overview: `docs/overview.md`. Architecture: `docs/architecture.md`. Mathematics: `docs/mathematics.md`. Pins: `.cursor/skills/esp32-fuel-vapor/hardware.md`. Experiments: `.cursor/skills/esp32-fuel-vapor/tests.md`. Faults (no fix without ID approval): `docs/fault-ledger.md`.
+Overview: `docs/overview.md`. Architecture: `docs/architecture.md`. Mathematics: `docs/mathematics.md`. Pins: `.cursor/skills/esp32-fuel-vapor/hardware.md`. **BUY photos + specs:** `docs/buy.md`. Experiments: `.cursor/skills/esp32-fuel-vapor/tests.md`. Faults (no fix without ID approval): `docs/fault-ledger.md`.
 
 ## Dependency graph
 
@@ -57,18 +57,37 @@ Tick boxes as you finish. A phase is done only when **every item in its checklis
 
 ## BUY checklist (parallel with P0)
 
-- [ ] ESP32 DevKit (USB cable that actually enumerates)
-- [ ] Two 10 kΩ potentiometers
-- [ ] SSD1306 128×64 I²C OLED
-- [ ] Common-cathode RGB LED (or three LEDs) + ~220 Ω resistors
-- [ ] Active buzzer
-- [ ] Tactile button
-- [ ] Breadboard + Dupont wires
-- [ ] MQ-2 module (needed by P6, buy early)
-- [ ] 5 V adapter for MQ-2 heater (not ESP32 3V3)
-- [ ] DMM (AO ≤ 3.3 V check before GPIO 34)
-- [ ] USB fan (optional, P7)
-- [ ] Pin map printed or open: `.cursor/skills/esp32-fuel-vapor/hardware.md`
+Full photos, search terms, electrical specs, reject-if, and typical ₹: **[docs/buy.md](buy.md)**. Tick here when the part is on the desk **and** matches **Must match** on that page.
+
+| | ID | Buy this | Qty | Spec (short) | Phase |
+|---|----|----------|-----|--------------|-------|
+| <img src="images/buy/buy-esp32.png" alt="ESP32" width="72"/> | B1 | ESP32 DevKit (30-pin WROOM) | 1 | 3.3 V logic, USB-UART, ADC1 | P1 |
+| <img src="images/buy/buy-usb.png" alt="USB cable" width="72"/> | B2 | USB **data** cable | 1 | Matches board plug; not charge-only | P1 |
+| <img src="images/buy/buy-pots.png" alt="Pots" width="72"/> | B3 | 10 kΩ **linear (B10K)** pots | 2 | 3-terminal; speed + dry vapor | P3 |
+| <img src="images/buy/buy-oled.png" alt="OLED" width="72"/> | B4 | SSD1306 128×64 I²C | 1 | 4-pin, addr 0x3C (or 0x3D) | P2 |
+| <img src="images/buy/buy-rgb.png" alt="RGB" width="72"/> | B5 | RGB LED + 3× ~220 Ω | 1 set | Common **cathode** preferred | P4 |
+| <img src="images/buy/buy-buzzer.png" alt="Buzzer" width="72"/> | B6 | Active buzzer | 1 | DC beep; not passive piezo | P4 |
+| <img src="images/buy/buy-button.png" alt="Button" width="72"/> | B7 | 6×6 tactile | 1 | GPIO 4 to GND, pull-up | P4 |
+| <img src="images/buy/buy-breadboard.png" alt="Breadboard" width="72"/> | B8 | 830-pt breadboard + Dupont | 1 | M-M and M-F | P1 |
+| <img src="images/buy/buy-mq2.png" alt="MQ-2" width="72"/> | B9 | MQ-2 **module** (one) | 1 | Heater 5 V; AO ≤ 3.3 V | P6 |
+| <img src="images/buy/buy-psu.png" alt="5V PSU" width="72"/> | B10 | 5 V ≥1 A adapter | 1 | Common GND; not ESP32 3V3 | P6 |
+| <img src="images/buy/buy-dmm.png" alt="DMM" width="72"/> | B11 | DMM (borrow OK) | 1 | DC V; AO check | P6 |
+| <img src="images/buy/buy-fan.png" alt="Fan" width="72"/> | B12 | USB fan | 0–1 | Optional P7 | P7 |
+
+- [ ] B1 ESP32 enumerates as COM
+- [ ] B2 data cable
+- [ ] B3 two linear 10 kΩ pots
+- [ ] B4 SSD1306 128×64 I²C
+- [ ] B5 RGB (common cathode or 3 LEDs) + ~220 Ω
+- [ ] B6 active buzzer
+- [ ] B7 tactile button
+- [ ] B8 breadboard + Dupont
+- [ ] B9 one MQ-2 (buy early)
+- [ ] B10 5 V heater supply
+- [ ] B11 DMM available
+- [ ] B12 fan **or** skip P7
+- [ ] Pin map: `.cursor/skills/esp32-fuel-vapor/hardware.md`
+- [ ] Optional: two 10 kΩ resistors for AO divider if AO > 3.3 V
 
 ## Phase summary
 

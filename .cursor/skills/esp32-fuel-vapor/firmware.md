@@ -44,10 +44,13 @@ Dry-pot mode: shorter warm-up (e.g. 2 s) is allowed if MQ-2 heater is disconnect
 
 ## Commands
 
-From `firmware/` or `scripts\p1-build.cmd` / `scripts\p1-upload.cmd` / `scripts\p1-monitor.cmd` (see `docs/execution-plan.md`):
+Generic (pass any PlatformIO args; extra flags after the verb):
 
 ```
-pio run
-pio run -t upload
-pio device monitor
+scripts\pio.cmd run
+scripts\pio.cmd run -t upload
+scripts\pio.cmd device monitor
+scripts\p1-upload.cmd --upload-port COM3
 ```
+
+Phase aliases (`p1-build` / `p1-upload` / `p1-monitor`) call `pio.cmd`. Same verbs work if `pio` is already on PATH inside `firmware\`.

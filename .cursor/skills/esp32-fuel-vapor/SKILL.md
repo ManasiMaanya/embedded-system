@@ -56,11 +56,18 @@ Not automotive-certified. MQ-2 is not gasoline-specific.
 2. Firmware under `firmware/` (PlatformIO, Arduino-ESP32). L3 constants only in `firmware/src/math_params.h` and `sim/adaptive_threshold.py` — **same numbers**. Change both together; cite `docs/mathematics.md`.
 3. Serial 115200, 2 Hz CSV: `t_ms,raw,baseline,delta,speed,Tmod,Thigh,state`. Sim CSV uses the same columns.
 4. After pin or `T(v)` constant changes, update `hardware.md`, `sim/adaptive_threshold.py`, and this file in the same edit.
-5. Windows: `scripts\p0.cmd` for the sim. Firmware: `scripts\p1-build.cmd`, `scripts\p1-upload.cmd`, `scripts\p1-monitor.cmd`. Operator table: `docs/execution-plan.md`.
+5. Windows: `scripts\p0.cmd` for the sim. Firmware: `scripts\p1-build.cmd` / `scripts\pio.cmd run`. Operator table: `docs/execution-plan.md`.
 
 ## Runnable scripts (mandatory)
 
 Always add a script the user can run and edit (`scripts\<name>.cmd` from repo root, or a lab `*.py` they invoke via that `.cmd`). Do **not** leave verification as `python -c` only.
+
+**Reuse before adding a new `.cmd`:**
+
+- Shared env: `call "%~dp0_lib.cmd"` (sets `REPO`, `PY`, `PIO`, `PIO_PROJECT`). Do not copy Python/PIO lookup into a new file.
+- Forward `%*` so the user can pass flags (`scripts\p0.cmd --help`, `scripts\p1-upload.cmd --upload-port COM3`).
+- Firmware: implement as `scripts\pio.cmd <platformio args>` (or a one-line alias that calls it). Override project with `set PIO_PROJECT=...`.
+- Python labs: argparse + `--help`; defaults must still match the P0 checklist when run with no args.
 
 Keep the operator plan in `docs/execution-plan.md`: what to run, in order, expected output, **Ready?** yes/no. When a phase becomes runnable, add the script **and** a table row there in the same change. The user may edit Ready? and the order list themselves.
 
@@ -114,6 +121,7 @@ When adding firmware: keep L1–L5 separable; put L3 numbers in `math_params.h`.
 ## Additional resources
 
 - [hardware.md](hardware.md) — pins, BOM, power
+- `docs/buy.md` — BUY photos, specs, typical ₹
 - [firmware.md](firmware.md) — loop and PlatformIO
 - [tests.md](tests.md) — Python sim, then pots, then MQ-2
 - `docs/architecture.md` — layers L0–L5, dual sim/firmware controller

@@ -8,11 +8,22 @@ The agent must add a **script you can run yourself** (`scripts\<name>.cmd` or `p
 |-----|------|
 | This file | What **you** type, expected output, Ready? |
 | [implementation-plan.md](implementation-plan.md) | Phases, dependencies, checklists |
+| [buy.md](buy.md) | Parts photos + specifications |
 | [phase-execution-status.md](phase-execution-status.md) | Live board (agent updates before commit) |
 | [mathematics.md](mathematics.md) | `T(v)` equations |
 | [architecture.md](architecture.md) | L0–L5 |
 
 Working directory unless a script `cd`s: **repo root**. Prefer `scripts\*.cmd` (PowerShell often blocks `.ps1`).
+
+Shared helpers (use these; do not copy-paste lookup logic):
+
+| Script | Role |
+|--------|------|
+| `scripts\_lib.cmd` | Sets `REPO`, `PY`, `PIO`, `PIO_PROJECT`. Called by the others. |
+| `scripts\pio.cmd` | Any PlatformIO command in `firmware\` (or `PIO_PROJECT`). |
+| `scripts\p0.cmd` | Sim; extra args → `sim\adaptive_threshold.py` (`--help`). |
+| `scripts\p1-*.cmd` | Thin aliases of `pio.cmd` / pip install. Extra args forwarded. |
+| `scripts\preview-docs.cmd` | Any `.md`; extra args → `preview_md.py` (`--out`, `--no-open`). |
 
 ---
 
@@ -22,16 +33,16 @@ Edit the **Ready?** column when you have actually run it.
 
 | Phase | Ready? | You execute | Expected |
 |-------|--------|-------------|----------|
-| **P0** Sim + closed form | **yes** | `scripts\p0.cmd` | Closed form; `sim\out\math_summary.txt`; MOD→SAFE at `d=200`; CSV under `sim\out\` |
+| **P0** Sim + closed form | **yes** | `scripts\p0.cmd` | Closed form; `sim\out\math_summary.txt`; MOD→SAFE at `d=200`; CSV under `sim\out\`. Other d: `scripts\p0.cmd --delta 180` |
 | **P1** Install PlatformIO | no | `scripts\p1-install-pio.cmd` | `pip` installs `platformio`; then **open a new cmd** |
-| **P1** Build firmware | no | `scripts\p1-build.cmd` | Compile of `firmware/` succeeds *(needs PIO; first run downloads ESP32 platform)* |
-| **P1** Upload + blink | no | `scripts\p1-upload.cmd` | Upload OK; on-board LED blinks *(needs ESP32)* |
-| **P1** Serial | no | `scripts\p1-monitor.cmd` | 115200 CSV header then rows *(needs ESP32)* |
+| **P1** Build firmware | no | `scripts\p1-build.cmd` or `scripts\pio.cmd run` | Compile of `firmware/` succeeds *(needs PIO; first run downloads ESP32 platform)* |
+| **P1** Upload + blink | no | `scripts\p1-upload.cmd` | Upload OK; on-board LED blinks *(needs ESP32)*. Port: `scripts\p1-upload.cmd --upload-port COM3` |
+| **P1** Serial | no | `scripts\p1-monitor.cmd` | 115200 CSV header then rows *(needs ESP32)*. Port: `scripts\p1-monitor.cmd --port COM3` |
 | **P2–P4** Bench bring-up | no | same upload/monitor; follow plan checklists | OLED / pots / RGB per [implementation-plan.md](implementation-plan.md) |
 | **P5** Dry labs | no | pots + monitor; save CSV yourself | Tables vs sim |
 | **P6** MQ-2 | no | set `DRY_POT` 0, then upload | Air-only SAFE on speed sweep |
 | **P7** Optional | no | *(script when that lab is defined)* | Fan/IPA notes; no petrol |
-| **Docs preview** | **yes** (agent) | `scripts\preview-docs.cmd` | Browser opens architecture (KaTeX). Other file: `scripts\preview-docs.cmd docs\overview.md` |
+| **Docs preview** | **yes** (agent) | `scripts\preview-docs.cmd` | Browser opens architecture. Other file: `scripts\preview-docs.cmd docs\overview.md`. HTML only: `scripts\preview-docs.cmd docs\overview.md --no-open` |
 
 ---
 
@@ -45,7 +56,7 @@ scripts\p0.cmd
 
 You should see the closed-form block (`T_mod(v) = 180 + 0.8 * v`, `v_enter_mod = 25`, `v_leave_mod = 75`) then tables A and B. If `python` is not on PATH, install Python 3 and retry.
 
-To change `T_0` or `K`: edit `firmware\src\math_params.h` **and** `sim\adaptive_threshold.py`, then run `scripts\p0.cmd` again.
+To change `T_0` or `K`: edit `firmware\src\math_params.h` **and** `sim\adaptive_threshold.py`, then run `scripts\p0.cmd` again. Flags: `scripts\p0.cmd --help`.
 
 ---
 
@@ -54,7 +65,7 @@ To change `T_0` or `K`: edit `firmware\src\math_params.h` **and** `sim\adaptive_
 You can rewrite this list.
 
 1. `scripts\p0.cmd` — math + CSV + `sim\out\math_summary.txt`  
-2. BUY parts (ESP32, two 10 kΩ pots, OLED, USB cable) — plan BUY checklist  
+2. BUY parts — photos/specs in `docs/buy.md`; ticks in the implementation-plan BUY table  
 3. `scripts\p1-install-pio.cmd` (once), new cmd, then `scripts\p1-build.cmd`  
 4. Plug in ESP32: `scripts\p1-upload.cmd` — blink  
 5. OLED → pots → FSM (P2–P4) + `scripts\p1-monitor.cmd`  

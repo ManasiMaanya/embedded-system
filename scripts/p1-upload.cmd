@@ -1,9 +1,4 @@
 @echo off
-cd /d "%~dp0..\firmware"
-where pio >nul 2>&1
-if %ERRORLEVEL%==0 (
-  pio run -t upload
-  exit /b %ERRORLEVEL%
-)
-python -m platformio run -t upload
+REM Alias: flash. Extra args: scripts\p1-upload.cmd --upload-port COM3
+call "%~dp0pio.cmd" run -t upload %*
 exit /b %ERRORLEVEL%

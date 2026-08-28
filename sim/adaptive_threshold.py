@@ -5,6 +5,7 @@ L3/L4 math: docs/mathematics.md. Constants must match firmware/src/math_params.h
 
 from __future__ import annotations
 
+import argparse
 import csv
 from pathlib import Path
 
@@ -142,22 +143,70 @@ def write_math_summary(path: Path, delta: float) -> None:
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
-def main() -> None:
-    speeds = [float(v) for v in range(0, 121, 5)]
-    fixed_d = 200.0
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    p = argparse.ArgumentParser(
+        description="Sweep T(v) FSM; same columns as firmware serial CSV."
+    )
+    p.add_argument(
+        "--delta",
+        type=float,
+        default=200.0,
+        help="fixed vapor index d for speed sweep / closed form (default: 200)",
+    )
+    p.add_argument(
+        "--out-dir",
+        type=Path,
+        default=OUT_DIR,
+        help="CSV and math_summary.txt directory (default: sim/out)",
+    )
+    p.add_argument("--v-max", type=float, default=V_MAX, help="speed sweep end km/h")
+    p.add_argument("--v-step", type=float, default=5.0, help="speed sweep step km/h")
+    p.add_argument(
+        "--hold-v",
+        type=float,
+        nargs="+",
+        default=[0.0, 80.0],
+        help="speeds for delta-sweep experiment B (default: 0 80)",
+    )
+    p.add_argument("--d-max", type=float, default=800.0, help="delta sweep end")
+    p.add_argument("--d-step", type=float, default=20.0, help="delta sweep step")
+    return p.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    out_dir = args.out_dir
+    if not out_dir.is_absolute():
+        out_dir = Path.cwd() / out_dir
+    out_dir = out_dir.resolve()
+
+    v_max = args.v_max
+    n_steps = int(round(v_max / args.v_step))
+    speeds = [i * args.v_step for i in range(n_steps + 1)]
+    if speeds[-1] != v_max:
+        speeds.append(v_max)
+
+    fixed_d = args.delta
+    d_tag = str(int(fixed_d)) if fixed_d == int(fixed_d) else str(fixed_d).replace(".", "p")
+
     print_closed_form(fixed_d)
-    write_math_summary(OUT_DIR / "math_summary.txt", fixed_d)
+    write_math_summary(out_dir / "math_summary.txt", fixed_d)
     rows_a = run_sweep(speeds, [fixed_d] * len(speeds))
-    write_csv(OUT_DIR / "sim_speed_sweep_d200.csv", rows_a)
-    print_table(f"A: delta held at {fixed_d}, speed 0–120 km/h", rows_a, every=2)
+    write_csv(out_dir / f"sim_speed_sweep_d{d_tag}.csv", rows_a)
+    print_table(f"A: delta held at {fixed_d}, speed 0–{v_max:g} km/h", rows_a, every=2)
 
-    deltas = [float(d) for d in range(0, 801, 20)]
-    for v_hold in (0.0, 80.0):
+    n_d = int(round(args.d_max / args.d_step))
+    deltas = [i * args.d_step for i in range(n_d + 1)]
+    for v_hold in args.hold_v:
         rows_b = run_sweep([v_hold] * len(deltas), deltas)
-        write_csv(OUT_DIR / f"sim_delta_sweep_v{int(v_hold)}.csv", rows_b)
-        print_table(f"B: speed held at {v_hold:.0f} km/h, delta 0–800", rows_b, every=4)
+        write_csv(out_dir / f"sim_delta_sweep_v{int(v_hold)}.csv", rows_b)
+        print_table(
+            f"B: speed held at {v_hold:g} km/h, delta 0–{args.d_max:g}",
+            rows_b,
+            every=4,
+        )
 
-    print(f"CSV written under {OUT_DIR}")
+    print(f"CSV written under {out_dir}")
     print("Same columns as firmware serial (raw/baseline empty in sim).")
 
 

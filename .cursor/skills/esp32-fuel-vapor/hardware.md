@@ -4,19 +4,22 @@ Single tank MQ-2 + speed potentiometer. Change firmware and this file together.
 
 ## BOM (class budget ~₹2000)
 
+Photos, full specs, search terms, typical ₹: **`docs/buy.md`**.
+
 | Item | Qty | Role |
 |------|-----|------|
 | ESP32 DevKit | 1 | MCU, 3.3 V logic |
+| USB data cable | 1 | Enumerate COM; match micro-USB vs USB-C |
 | MQ-2 module | 1 | Fuel-tank vapor index (AO) |
-| 10 kΩ potentiometer | 1 | Simulated vehicle speed 0–120 km/h |
-| 10 kΩ potentiometer | 1 | Optional: dry vapor stand-in (see tests.md) |
+| 10 kΩ **linear** potentiometer | 2 | Speed 0–120 km/h + optional dry vapor |
 | SSD1306 OLED 128×64 I²C | 1 | Show v, delta, T_mod, T_high, state |
 | Common-cathode RGB + ~220 Ω | 1 | Safe / moderate / high |
 | Active buzzer | 1 | Intermittent / continuous |
 | Tactile button | 1 | Recapture baseline |
-| 5 V adapter | 1 | MQ-2 heater; common GND with ESP32 |
-| USB fan (5 V) | 1 | Optional: airflow vs speed story |
-| Breadboard, wires, AO divider if needed | — | AO must stay ≤ 3.3 V |
+| 5 V adapter ≥1 A | 1 | MQ-2 heater; common GND with ESP32 |
+| DMM | 1 | AO ≤ 3.3 V (borrow OK) |
+| USB fan (5 V) | 0–1 | Optional: airflow vs speed story |
+| Breadboard, Dupont, AO divider if needed | — | AO must stay ≤ 3.3 V |
 
 ## Pin map (ESP32 DevKit V1)
 
