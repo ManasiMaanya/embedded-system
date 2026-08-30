@@ -1,6 +1,6 @@
 # Hardware reference
 
-Single tank MQ-2 + speed potentiometer. Pins must match `firmware/src/pins.h`. Shop photos and URLs: `docs/buy.md`. Abbreviations: `docs/abbreviations.md`. L3 numbers: `firmware/src/math_params.h` (not copied ad hoc in `main.cpp`).
+Single tank MQ-2 + speed potentiometer. Pins must match `firmware/src/pins.h`. Shop photos and URLs: `docs/buy.md`. Abbreviations: `docs/abbreviations.md`. **How the parts work:** `docs/electronics-components.md`. **Schematic (Fig A dry / Fig B MQ-2, pin sheet):** `docs/circuit-diagram.md`. L3 numbers: `firmware/src/math_params.h` (not copied ad hoc in `main.cpp`).
 
 ## BOM — what each part is for
 
@@ -106,7 +106,7 @@ Each colour → **220 Ω** → GPIO. Common cathode → **GND**.
 
 ### B8 — Breadboard + Dupont
 
-**Use:** Hold B1 and all modules. M–M for holes; M–F for OLED/MQ-2 headers.
+**Use:** Hold B1 and all modules. M–M for holes; M–F for OLED/MQ-2 headers. Placement drawings: `docs/circuit-diagram.md` (Breadboard connection).
 
 **DMM:** Continuity of jumpers; jumper **split** red/blue rails if the board is cut in the middle.
 

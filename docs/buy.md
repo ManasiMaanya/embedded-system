@@ -1,6 +1,6 @@
 # BUY catalog — parts, photos, specifications
 
-Class budget about **₹2000**. Photos are **look-like** listing shots so you can match a shop photo; they are not a specific brand SKU. Pins and power: `.cursor/skills/esp32-fuel-vapor/hardware.md`. Tick the boxes when the part is **on the desk** and matches the **Must match** row.
+Class budget about **₹2000**. Photos are **look-like** listing shots so you can match a shop photo; they are not a specific brand SKU. Pins and power: `.cursor/skills/esp32-fuel-vapor/hardware.md`. Electrical overview: `docs/electronics-components.md`. Schematic: `docs/circuit-diagram.md`. Tick the boxes when the part is **on the desk** and matches the **Must match** row.
 
 **Do not buy petrol, a fuel tank, or extra MQ-2 modules** (localization is out of scope).
 

@@ -6,7 +6,7 @@ Do not start a later phase until that phase’s **Depends on** items are done, u
 
 **Live status (refresh before commit):** `docs/phase-execution-status.md`. **What you type:** `docs/execution-plan.md` (`scripts\*.cmd`). Checklists below are the detailed ticks.
 
-Overview: `docs/overview.md`. Architecture: `docs/architecture.md`. Mathematics: `docs/mathematics.md`. Pins: `.cursor/skills/esp32-fuel-vapor/hardware.md`. **BUY photos + specs:** `docs/buy.md`. Experiments: `.cursor/skills/esp32-fuel-vapor/tests.md`. Faults (no fix without ID approval): `docs/fault-ledger.md`.
+Overview: `docs/overview.md`. Architecture: `docs/architecture.md`. Mathematics: `docs/mathematics.md`. Pins: `.cursor/skills/esp32-fuel-vapor/hardware.md`. How parts work: `docs/electronics-components.md`. Schematic: `docs/circuit-diagram.md`. **BUY photos + specs:** `docs/buy.md`. Experiments: `.cursor/skills/esp32-fuel-vapor/tests.md`. Faults (no fix without ID approval): `docs/fault-ledger.md`.
 
 ## Dependency graph
 
@@ -265,7 +265,7 @@ Full photos, search terms, electrical specs, reject-if, and typical ₹: **[docs
 
 - [ ] `docs/architecture.md` cited (L0–L5); `docs/mathematics.md` equations (4)–(5) and §5 inverses in the write-up
 - [ ] `docs/overview.md` current (one MQ-2, adaptive `T(v)`, sim + pots)
-- [ ] This plan + pin map (`hardware.md`) attached or cited
+- [x] This plan + pin map (`hardware.md`, `docs/circuit-diagram.md`) attached or cited
 - [ ] Sim **closed-form** printout + CSV plot from `sim/out/`
 - [ ] Predicted vs measured `d_enter(0)` and `d_enter(80)` (math vs pots)
 - [ ] P5 dry tables + OLED photos

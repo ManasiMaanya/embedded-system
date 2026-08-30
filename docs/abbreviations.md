@@ -9,6 +9,8 @@ Glossary for this workspace (ESP32 tank-vapor monitor, speed-scheduled `T(v)`). 
 | [architecture.md](architecture.md) | L0–L5 |
 | [mathematics.md](mathematics.md) | Equations |
 | [hardware.md](../.cursor/skills/esp32-fuel-vapor/hardware.md) | Pins and part use |
+| [electronics-components.md](electronics-components.md) | How each part works electrically |
+| [circuit-diagram.md](circuit-diagram.md) | Connection schematics |
 | [buy.md](buy.md) | Shop IDs B1–B12 |
 
 ---

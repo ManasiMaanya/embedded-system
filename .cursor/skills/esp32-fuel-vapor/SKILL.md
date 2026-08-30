@@ -124,7 +124,8 @@ When adding firmware: keep L1–L5 separable; put L3 numbers in `math_params.h`.
 - `docs/buy.md` — BUY photos, specs, typical ₹
 - [firmware.md](firmware.md) — loop and PlatformIO
 - [tests.md](tests.md) — Python sim, then pots, then MQ-2
-- `docs/abbreviations.md` — ADC, GPIO, `T_mod`, P0–P8, B1–B12, CSV columns
+- `docs/electronics-components.md` — how ADC, pots, MQ-2, OLED, RGB, buzzer work in this circuit
+- `docs/circuit-diagram.md` — pin schematic, Fig A/B, breadboard pictures, netlist
 - `docs/architecture.md` — layers L0–L5, dual sim/firmware controller
 - `docs/mathematics.md` — ADC, \(T(v)\), inverses, worked example
 - `docs/implementation-plan.md` — phases, dependencies, checklists

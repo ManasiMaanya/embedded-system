@@ -12,7 +12,8 @@ The agent must add a **script you can run yourself** (`scripts\<name>.cmd` or `p
 | [phase-execution-status.md](phase-execution-status.md) | Live board (agent updates before commit) |
 | [mathematics.md](mathematics.md) | `T(v)` equations |
 | [architecture.md](architecture.md) | L0–L5 |
-| [abbreviations.md](abbreviations.md) | ADC, GPIO, `T_mod`, phases, CSV |
+| [electronics-components.md](electronics-components.md) | How ADC, MQ-2, pots, OLED, RGB work |
+| [circuit-diagram.md](circuit-diagram.md) | Schematics Fig A / Fig B + netlist |
 
 This workspace opens `.md` in Cursor’s built-in Markdown Preview (`vscode.markdown.preview.editor`). Reopen `hardware.md` after reload. **Ctrl+Shift+V** = preview tab; **Ctrl+K V** = preview beside source. Browser fallback: `scripts\preview-docs.cmd`.
 
@@ -24,7 +25,7 @@ Shared helpers (use these; do not copy-paste lookup logic):
 | `scripts\pio.cmd` | Any PlatformIO command in `firmware\` (or `PIO_PROJECT`). |
 | `scripts\p0.cmd` | Sim; extra args → `sim\adaptive_threshold.py` (`--help`). |
 | `scripts\p1-*.cmd` | Thin aliases of `pio.cmd` / pip install. Extra args forwarded. |
-| `scripts\preview-docs.cmd` | Any `.md`; extra args → `preview_md.py` (`--out`, `--no-open`). |
+| `scripts\gen-pin-schematic.cmd` | Rebuild `docs/images/circuit/pin-connection-schematic.svg` |
 
 ---
 

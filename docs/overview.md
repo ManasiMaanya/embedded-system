@@ -2,7 +2,7 @@
 
 **ESP32 fuel-tank vapor monitor with speed-adaptive thresholds**
 
-VIT Embedded Systems hardware project. This document is the course-facing summary. **Architecture** (`docs/architecture.md`) and **mathematics** (`docs/mathematics.md`) are the academic core; hardware instantiates them. Glossary: `docs/abbreviations.md`. Phase order: `docs/implementation-plan.md`. Live execution status (update before commit): `docs/phase-execution-status.md`. What you run: `docs/execution-plan.md`. Fault ledger: `docs/fault-ledger.md`.
+VIT Embedded Systems hardware project. This document is the course-facing summary. **Architecture** (`docs/architecture.md`) and **mathematics** (`docs/mathematics.md`) are the academic core; hardware instantiates them. Glossary: `docs/abbreviations.md`. How the electronics work: `docs/electronics-components.md`. Circuit connections: `docs/circuit-diagram.md`. Phase order: `docs/implementation-plan.md`. Live execution status (update before commit): `docs/phase-execution-status.md`. What you run: `docs/execution-plan.md`. Fault ledger: `docs/fault-ledger.md`.
 
 ## Problem
 
@@ -99,7 +99,7 @@ Alarms never use raw ADC against a magic constant; they use **delta vs `T(v)`**.
 | USB fan (optional) | Airflow analogy for “speed”                                |
 
 
-GPIO map, BOM, and power rules: `.cursor/skills/esp32-fuel-vapor/hardware.md`. What to buy (photos + specs): `docs/buy.md`. Firmware: `firmware/`.
+GPIO map, BOM, and power rules: `.cursor/skills/esp32-fuel-vapor/hardware.md`. Component theory: `docs/electronics-components.md`. Schematics: `docs/circuit-diagram.md`. What to buy (photos + specs): `docs/buy.md`. Firmware: `firmware/`.
 
 **Power:** ESP32 from USB. MQ-2 heater from an external 5 V adapter, not the ESP32 3V3 pin. Measure AO before connecting; divide if it can exceed 3.3 V. Never wire MQ-2 AO and the vapor pot to GPIO 34 at the same time.
 

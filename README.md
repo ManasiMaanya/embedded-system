@@ -2,7 +2,7 @@
 
 VIT Embedded Systems hardware project. **One MQ-2** at the fuel-tank zone. The work is an **architecture + math** study of a speed-scheduled alarm \(T(v)\) on one tank-zone index, not multi-zone localization.
 
-Overview: `docs/overview.md`. Architecture: `docs/architecture.md`. Mathematics: `docs/mathematics.md`. Abbreviations: `docs/abbreviations.md`. Implementation: `docs/implementation-plan.md`. BUY (photos + specs): `docs/buy.md`. Execution status (update before commit): `docs/phase-execution-status.md`. What you run: `docs/execution-plan.md`. Fault ledger: `docs/fault-ledger.md`.
+Overview: `docs/overview.md`. Architecture: `docs/architecture.md`. Mathematics: `docs/mathematics.md`. Abbreviations: `docs/abbreviations.md`. Electronics (how parts work): `docs/electronics-components.md`. Circuit diagram: `docs/circuit-diagram.md`. Implementation: `docs/implementation-plan.md`. BUY (photos + specs): `docs/buy.md`. Execution status (update before commit): `docs/phase-execution-status.md`. What you run: `docs/execution-plan.md`. Fault ledger: `docs/fault-ledger.md`.
 
 ## Software simulation
 
